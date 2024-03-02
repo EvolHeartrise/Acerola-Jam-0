@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgol6qjoft5h6"]
+
+[ext_resource type="Texture2D" uid="uid://bdggvdvs13i1q" path="res://assets/textures/wood-floor.png" id="1_2tunw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrnhq"]
+albedo_color = Color(0.745098, 0.329412, 0, 1)
+albedo_texture = ExtResource("1_2tunw")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_jcvg3"]
+material = SubResource("StandardMaterial3D_jrnhq")
+size = Vector3(1, 2, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lrci5"]
+albedo_color = Color(1, 0.745098, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_rbomk"]
+material = SubResource("StandardMaterial3D_lrci5")
+radius = 0.1
+height = 0.2
+radial_segments = 8
+rings = 4
+
+[node name="Door" type="Node3D"]
+
+[node name="wood" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_jcvg3")
+
+[node name="Handle" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.341656, 1.01968, 0.0961509)
+mesh = SubResource("SphereMesh_rbomk")

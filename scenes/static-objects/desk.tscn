@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdck07e2mw6ln"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3rbxn"]
+size = Vector3(2, 0.04, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_05yta"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.8
+radial_segments = 8
+rings = 1
+cap_top = false
+cap_bottom = false
+
+[node name="Desk" type="Node3D"]
+
+[node name="Top" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00731635, 0.8, -0.00399685)
+mesh = SubResource("BoxMesh_3rbxn")
+
+[node name="Leg" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0.4, -0.4)
+mesh = SubResource("CylinderMesh_05yta")
+
+[node name="Leg2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.4, -0.4)
+mesh = SubResource("CylinderMesh_05yta")
+
+[node name="Leg3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.4, 0.4)
+mesh = SubResource("CylinderMesh_05yta")
+
+[node name="Leg4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0.4, 0.4)
+mesh = SubResource("CylinderMesh_05yta")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnjf256yfi1rt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v527"]
+resource_local_to_scene = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_jtk0j"]
+material = SubResource("StandardMaterial3D_5v527")
+size = Vector3(0.99, 0.3, 1.91)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57akg"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p6f20"]
+material = SubResource("StandardMaterial3D_57akg")
+size = Vector3(1.1, 0.25, 2)
+
+[node name="Bed" type="Node3D"]
+
+[node name="Matress" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.167088, 0)
+mesh = SubResource("BoxMesh_jtk0j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+mesh = SubResource("BoxMesh_p6f20")

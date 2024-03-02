@@ -1,0 +1,159 @@
+[gd_scene load_steps=25 format=3 uid="uid://bxu0scr43vuj7"]
+
+[ext_resource type="Script" path="res://scenes/locations/bedroom.gd" id="1_0pjvy"]
+[ext_resource type="PackedScene" uid="uid://1fsfk1ibvid6" path="res://models/anti-cupid.blend" id="1_bs4a3"]
+[ext_resource type="PackedScene" uid="uid://cnjf256yfi1rt" path="res://scenes/static-objects/bed.tscn" id="2_1kxwp"]
+[ext_resource type="Texture2D" uid="uid://bdggvdvs13i1q" path="res://assets/textures/wood-floor.png" id="2_b2w6c"]
+[ext_resource type="PackedScene" uid="uid://dp8l227g7ovt4" path="res://scenes/static-objects/cake.tscn" id="4_grds8"]
+[ext_resource type="PackedScene" uid="uid://dgol6qjoft5h6" path="res://scenes/static-objects/door.tscn" id="6_t4ey1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_haeoc"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_a5sd6"]
+sky_material = SubResource("ProceduralSkyMaterial_haeoc")
+
+[sub_resource type="Environment" id="Environment_kdud5"]
+background_mode = 2
+sky = SubResource("Sky_a5sd6")
+ambient_light_color = Color(0.65098, 0.65098, 0.65098, 1)
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_15doc"]
+albedo_texture = ExtResource("2_b2w6c")
+uv1_scale = Vector3(0.4, 0.4, 0.4)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mr4ry"]
+material = SubResource("StandardMaterial3D_15doc")
+size = Vector2(4, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2nmh"]
+albedo_color = Color(0.117647, 1, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g6n0c"]
+material = SubResource("StandardMaterial3D_q2nmh")
+radius = 0.3
+height = 1.7
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_usutj"]
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ccv0l"]
+width = 256
+seamless = true
+noise = SubResource("FastNoiseLite_usutj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m50ur"]
+albedo_color = Color(0.498039, 0.698039, 0.72549, 1)
+albedo_texture = SubResource("NoiseTexture2D_ccv0l")
+uv1_scale = Vector3(0.33, 0.33, 0.33)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lkgq3"]
+material = SubResource("StandardMaterial3D_m50ur")
+size = Vector2(2.5, 5)
+
+[sub_resource type="Animation" id="Animation_6hcjy"]
+resource_name = "1"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["At least I guess it is?"],
+"method": &"textbox"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hsn1d"]
+resource_name = "0-Autoplay"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s3u3i"]
+_data = {
+"0-Autoplay": SubResource("Animation_hsn1d"),
+"1": SubResource("Animation_6hcjy")
+}
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4m6rw"]
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sx7h8"]
+noise = SubResource("FastNoiseLite_4m6rw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nbodn"]
+albedo_color = Color(0.572549, 0.0627451, 0, 1)
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_sx7h8")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ql65o"]
+material = SubResource("StandardMaterial3D_nbodn")
+size = Vector3(2.5, 0.1, 2.5)
+
+[node name="BedroomScene" type="Node3D"]
+transform = Transform3D(0.998248, 0, 0, 0, 0.998248, 0, 0, 0, 0.998248, 0, 0, 0)
+script = ExtResource("1_0pjvy")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kdud5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.967621, -0.183334, 0.183334, 1.14517e-08, 0.708348, 0.708348, -0.259273, 0.684212, -0.684211, 0, 3.15392, -5.73312)
+shadow_enabled = true
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_mr4ry")
+
+[node name="anti-cupid" parent="." instance=ExtResource("1_bs4a3")]
+transform = Transform3D(0.130867, 0, 0, 0, 0.130867, 0, 0, 0, 0.130867, 0.00478697, 0.0845306, 1.06328)
+
+[node name="TempMC" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0342541, 0.999413, 0, -0.999413, 0.0342541, 0, 0, 0, 1, 0, 0.648032, -1.72318)
+mesh = SubResource("CapsuleMesh_g6n0c")
+
+[node name="Bed" parent="." instance=ExtResource("2_1kxwp")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -1.723)
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 2, 1.25, 0)
+mesh = SubResource("PlaneMesh_lkgq3")
+
+[node name="Wall2" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, -2, 1.25, 0)
+mesh = SubResource("PlaneMesh_lkgq3")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1.00176, 0, 0, 0, 1.00176, 0, 0, 0, 1.00176, 0, 0.972255, 0.716598)
+fov = 50.0
+
+[node name="OpeningSequence" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+active = false
+libraries = {
+"": SubResource("AnimationLibrary_s3u3i")
+}
+autoplay = "0-Autoplay"
+
+[node name="Cake" parent="." instance=ExtResource("4_grds8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000571537, 0.906512, -0.72922)
+
+[node name="Wall3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-5.73206e-15, -1.31134e-07, -1, 1, -4.37114e-08, -4.2426e-22, -4.37114e-08, -1, 1.31134e-07, -0.19684, 1.25, 2.50439)
+mesh = SubResource("PlaneMesh_lkgq3")
+
+[node name="Door" parent="." instance=ExtResource("6_t4ey1")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 0.999999, 0, 8.74227e-08, 0, -0.999999, -1.18737, 4.77674e-07, 2.50361)
+
+[node name="Carpet" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.210826, -0.0356881, 0.952631)
+mesh = SubResource("BoxMesh_ql65o")

@@ -1,0 +1,79 @@
+[gd_scene load_steps=13 format=3 uid="uid://qx758nta104b"]
+
+[ext_resource type="Script" path="res://scenes/static-objects/candle.gd" id="1_nuq7m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tcgg"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wbmk3"]
+material = SubResource("StandardMaterial3D_7tcgg")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m7hjl"]
+albedo_color = Color(0.0941176, 0.0352941, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7ohbf"]
+material = SubResource("StandardMaterial3D_m7hjl")
+top_radius = 0.005
+bottom_radius = 0.005
+height = 0.05
+
+[sub_resource type="Gradient" id="Gradient_txqc0"]
+offsets = PackedFloat32Array(0, 0.678457)
+colors = PackedColorArray(1, 0, 0, 1, 0.905882, 0.462745, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e2m6b"]
+gradient = SubResource("Gradient_txqc0")
+
+[sub_resource type="Curve" id="Curve_fey75"]
+_data = [Vector2(0.00294986, 1), 0.0, -0.0154746, 0, 0, Vector2(1, 0), -3.76085, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qw57l"]
+curve = SubResource("Curve_fey75")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kij8d"]
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_box_extents = Vector3(0.01, 0.01, 0.01)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.02
+initial_velocity_max = 0.1
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = 0.05
+tangential_accel_max = 0.1
+scale_curve = SubResource("CurveTexture_qw57l")
+color_ramp = SubResource("GradientTexture1D_e2m6b")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jc0fd"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+disable_receive_shadows = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_fm5mn"]
+material = SubResource("StandardMaterial3D_jc0fd")
+radius = 0.01
+height = 0.02
+radial_segments = 8
+rings = 8
+
+[node name="Candle" type="Node3D"]
+script = ExtResource("1_nuq7m")
+
+[node name="Wax" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_wbmk3")
+
+[node name="Wick" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0503801, 0)
+mesh = SubResource("CylinderMesh_7ohbf")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Wick"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000680819, 0.0201649, 0.000893235)
+amount = 30
+visibility_aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+process_material = SubResource("ParticleProcessMaterial_kij8d")
+draw_pass_1 = SubResource("SphereMesh_fm5mn")

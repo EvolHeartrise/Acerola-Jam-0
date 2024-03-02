@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bq58ktpbl35wb"]
+
+[ext_resource type="Shader" path="res://assets/shaders/outline.gdshader" id="1_t6jx1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3d5sb"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.109804, 0, 0.14902, 1)
+roughness = 0.0
+emission = Color(0.101961, 0.00784314, 0.0156863, 1)
+rim_enabled = true
+rim_tint = 0.0
+backlight_enabled = true
+backlight = Color(0.909804, 0, 0.392157, 1)
+disable_receive_shadows = true
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+next_pass = SubResource("StandardMaterial3D_3d5sb")
+shader = ExtResource("1_t6jx1")
+shader_parameter/outline_color = Color(1, 0.266667, 0.792157, 1)
+shader_parameter/outline_width = 4.0

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://e3g73htnt0kh"]
+
+[ext_resource type="PackedScene" uid="uid://c474ksufd71ca" path="res://scenes/character-controller/character_controller.tscn" id="1_umnmq"]
+
+[node name="Test-level" type="Node"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.743286, -0.5, -1.27325)
+use_collision = true
+size = Vector3(23.052, 1, 19.4545)
+
+[node name="CharacterController" parent="." instance=ExtResource("1_umnmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.295165, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
