@@ -16,7 +16,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-InputManager="*res://scripts/input_manager.gd"
 TextBox="*res://scenes/autoloads/text_box.tscn"
 
 [input]

@@ -1,29 +1,25 @@
 [gd_scene load_steps=4 format=3 uid="uid://c474ksufd71ca"]
 
 [ext_resource type="Script" path="res://scenes/character-controller/character_controller.gd" id="1_67phr"]
+[ext_resource type="PackedScene" uid="uid://b2hkudtrk8o3t" path="res://scenes/character-visuals/character_visuals.tscn" id="2_20ggx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gthon"]
-radius = 0.3
-height = 1.8
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_7bqks"]
-radius = 0.3
-height = 1.8
+radius = 0.4
+height = 1.2
 
 [node name="CharacterController" type="CharacterBody3D"]
 script = ExtResource("1_67phr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 shape = SubResource("CapsuleShape3D_gthon")
 
 [node name="Rotator" type="Node3D" parent="."]
 unique_name_in_owner = true
 
 [node name="RayCast3D" type="RayCast3D" parent="Rotator"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847953, 0)
 target_position = Vector3(0, 0, -1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-mesh = SubResource("CapsuleMesh_7bqks")
+[node name="CharacterVisuals" parent="Rotator" instance=ExtResource("2_20ggx")]
+transform = Transform3D(0.319532, 0, 0, 0, 0.319532, 0, 0, 0, 0.319532, 0, 0, 0)

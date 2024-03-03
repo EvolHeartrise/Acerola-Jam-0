@@ -11,13 +11,17 @@ enum State {
 	DRAWING_BOW,
 }
 
-var state: State = State.IMMOBILE
+var state: State = State.WALKING
 
-func _process(delta: float) -> void:
+@onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+func _process(_delta: float) -> void:
 	match state:
 		State.IMMOBILE:
-			pass
+			velocity = Vector3.ZERO
 		State.WALKING:
+			if not is_on_floor():
+				velocity.y = -gravity
 			var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 			velocity.x = input_direction.x * movement_speed
 			velocity.z = input_direction.y * movement_speed

@@ -1,8 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://e3g73htnt0kh"]
+[gd_scene load_steps=5 format=3 uid="uid://e3g73htnt0kh"]
 
 [ext_resource type="PackedScene" uid="uid://c474ksufd71ca" path="res://scenes/character-controller/character_controller.tscn" id="1_umnmq"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rxv0n"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_42t0i"]
+sky_material = SubResource("ProceduralSkyMaterial_rxv0n")
+
+[sub_resource type="Environment" id="Environment_0egms"]
+background_mode = 2
+sky = SubResource("Sky_42t0i")
+tonemap_mode = 2
+glow_enabled = true
+
 [node name="Test-level" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0egms")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.743286, -0.5, -1.27325)
@@ -10,7 +30,7 @@ use_collision = true
 size = Vector3(23.052, 1, 19.4545)
 
 [node name="CharacterController" parent="." instance=ExtResource("1_umnmq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.295165, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47754, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)

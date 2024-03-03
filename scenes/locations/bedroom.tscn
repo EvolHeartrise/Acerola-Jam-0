@@ -1,7 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://bxu0scr43vuj7"]
+[gd_scene load_steps=27 format=3 uid="uid://bxu0scr43vuj7"]
 
 [ext_resource type="Script" path="res://scenes/locations/bedroom.gd" id="1_0pjvy"]
-[ext_resource type="PackedScene" uid="uid://1fsfk1ibvid6" path="res://models/anti-cupid.blend" id="1_bs4a3"]
 [ext_resource type="PackedScene" uid="uid://cnjf256yfi1rt" path="res://scenes/static-objects/bed.tscn" id="2_1kxwp"]
 [ext_resource type="Texture2D" uid="uid://bdggvdvs13i1q" path="res://assets/textures/wood-floor.png" id="2_b2w6c"]
 [ext_resource type="PackedScene" uid="uid://dp8l227g7ovt4" path="res://scenes/static-objects/cake.tscn" id="4_grds8"]
@@ -63,6 +62,9 @@ lightmap_size_hint = Vector2i(14, 27)
 material = SubResource("StandardMaterial3D_m50ur")
 size = Vector2(2.5, 5)
 
+[sub_resource type="Animation" id="Animation_hsn1d"]
+resource_name = "0-Autoplay"
+
 [sub_resource type="Animation" id="Animation_6hcjy"]
 resource_name = "1"
 tracks/0/type = "method"
@@ -79,9 +81,6 @@ tracks/0/keys = {
 "method": &"textbox"
 }]
 }
-
-[sub_resource type="Animation" id="Animation_hsn1d"]
-resource_name = "0-Autoplay"
 
 [sub_resource type="Animation" id="Animation_1hg5d"]
 resource_name = "2"
@@ -132,15 +131,11 @@ script = ExtResource("1_0pjvy")
 environment = SubResource("Environment_kdud5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.967621, -0.183334, 0.183334, 1.14517e-08, 0.708348, 0.708348, -0.259273, 0.684212, -0.684211, 0, 3.15392, -5.73312)
+transform = Transform3D(-0.965926, -0.183013, 0.183013, 1.14316e-08, 0.707107, 0.707107, -0.258819, 0.683013, -0.683013, 0, 3.15392, -5.73312)
 shadow_enabled = true
 
 [node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("PlaneMesh_mr4ry")
-
-[node name="anti-cupid" parent="." instance=ExtResource("1_bs4a3")]
-transform = Transform3D(0.130867, 0, 0, 0, 0.130867, 0, 0, 0, 0.130867, 0.00478697, 0.0845306, 1.06328)
 
 [node name="TempMC" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.0342541, 0.999413, 0, -0.999413, 0.0342541, 0, 0, 0, 1, -1.31957e-05, 0.486083, -1.72402)
